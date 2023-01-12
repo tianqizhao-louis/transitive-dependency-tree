@@ -1,1 +1,1162 @@
-# transitive-dependency-tree
+# Construct a Transitive Dependency Tree
+
+The project finds out the transitive dependency tree of a repository using Github GraphQL API.
+
+## Project Setup
+
+**env file**
+
+Make an env file according to `.env.template`.
+
+- `GITHUB_TOKEN` is Github Personal Token which has public repository access.
+- `REPO_OWNER` is the owner of the repository, e.g., pallets
+- `REPO_NAME` is the repository name, e.g., flask
+- `BOUND` is the number of iterations that wants to be performed, e.g., 1
+
+**Environment**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+## Sample Output
+
+### `k=1`
+
+```bash
+REPO_OWNER=pallets
+REPO_NAME=flask
+BOUND=1
+```
+
+produces the following `output.txt`:
+
+```
+click
+importlib-metadata
+itsdangerous
+jinja2
+werkzeug
+build
+cachetools
+cfgv
+chardet
+colorama
+distlib
+filelock
+identify
+nodeenv
+pep517
+pip-compile-multi
+pip-tools
+platformdirs
+pre-commit
+pyproject-api
+pyyaml
+toml
+toposort
+tox
+virtualenv
+wheel
+alabaster
+babel
+certifi
+charset-normalizer
+docutils
+idna
+imagesize
+markupsafe
+packaging
+pallets-sphinx-themes
+pygments
+pytz
+requests
+snowballstemmer
+sphinx
+sphinx-issues
+sphinx-tabs
+sphinxcontrib-applehelp
+sphinxcontrib-devhelp
+sphinxcontrib-htmlhelp
+sphinxcontrib-jsmath
+sphinxcontrib-log-cabinet
+sphinxcontrib-qthelp
+sphinxcontrib-serializinghtml
+urllib3
+asgiref
+attrs
+blinker
+iniconfig
+pluggy
+pytest
+python-dotenv
+cffi
+cryptography
+mypy
+mypy-extensions
+pycparser
+types-contextvars
+types-dataclasses
+types-setuptools
+typing-extensions
+flask
+dessant/lock-threads
+actions/cache
+actions/checkout
+actions/setup-python
+```
+
+### `k=2`
+
+```bash
+REPO_OWNER=pallets
+REPO_NAME=flask
+BOUND=2
+```
+
+produces the following `output.txt`:
+
+```
+click
+    colorama
+    importlib-metadata
+    build
+    cachetools
+    cfgv
+    chardet
+    click
+    distlib
+    filelock
+    identify
+    nodeenv
+    pep517
+    pip-compile-multi
+    pip-tools
+    platformdirs
+    pre-commit
+    pyproject-api
+    pyyaml
+    toposort
+    tox
+    virtualenv
+    wheel
+    alabaster
+    babel
+    certifi
+    charset-normalizer
+    docutils
+    idna
+    imagesize
+    jinja2
+    markupsafe
+    packaging
+    pallets-sphinx-themes
+    pygments
+    pytz
+    requests
+    snowballstemmer
+    sphinx
+    sphinx-issues
+    sphinx-tabs
+    sphinxcontrib-applehelp
+    sphinxcontrib-devhelp
+    sphinxcontrib-htmlhelp
+    sphinxcontrib-jsmath
+    sphinxcontrib-log-cabinet
+    sphinxcontrib-qthelp
+    sphinxcontrib-serializinghtml
+    urllib3
+    attrs
+    exceptiongroup
+    iniconfig
+    pluggy
+    pytest
+    tomli
+    mypy
+    mypy-extensions
+    typing-extensions
+    dessant/lock-threads
+    actions/cache
+    actions/checkout
+    actions/setup-python
+    pillow
+importlib-metadata
+    actions/checkout
+    actions/setup-python
+    re-actors/alls-green
+itsdangerous
+jinja2
+    markupsafe
+    build
+    cachetools
+    cfgv
+    chardet
+    click
+    colorama
+    distlib
+    filelock
+    identify
+    nodeenv
+    pep517
+    pip-compile-multi
+    pip-tools
+    platformdirs
+    pre-commit
+    pyproject-api
+    pyyaml
+    toposort
+    tox
+    virtualenv
+    wheel
+    alabaster
+    babel
+    certifi
+    charset-normalizer
+    docutils
+    idna
+    imagesize
+    jinja2
+    packaging
+    pallets-sphinx-themes
+    pygments
+    pytz
+    requests
+    snowballstemmer
+    sphinx
+    sphinx-issues
+    sphinxcontrib-applehelp
+    sphinxcontrib-devhelp
+    sphinxcontrib-htmlhelp
+    sphinxcontrib-jsmath
+    sphinxcontrib-log-cabinet
+    sphinxcontrib-qthelp
+    sphinxcontrib-serializinghtml
+    urllib3
+    attrs
+    exceptiongroup
+    iniconfig
+    pluggy
+    pytest
+    tomli
+    mypy
+    mypy-extensions
+    typing-extensions
+    dessant/lock-threads
+    actions/cache
+    actions/checkout
+    actions/setup-python
+werkzeug
+    markupsafe
+    build
+    cachetools
+    cfgv
+    chardet
+    click
+    colorama
+    distlib
+    filelock
+    identify
+    nodeenv
+    pep517
+    pip-compile-multi
+    pip-tools
+    platformdirs
+    pre-commit
+    pyproject-api
+    pyyaml
+    toposort
+    tox
+    virtualenv
+    wheel
+    alabaster
+    babel
+    certifi
+    charset-normalizer
+    docutils
+    idna
+    imagesize
+    jinja2
+    packaging
+    pallets-sphinx-themes
+    pygments
+    pytz
+    requests
+    snowballstemmer
+    sphinx
+    sphinx-issues
+    sphinxcontrib-applehelp
+    sphinxcontrib-devhelp
+    sphinxcontrib-htmlhelp
+    sphinxcontrib-jsmath
+    sphinxcontrib-log-cabinet
+    sphinxcontrib-qthelp
+    sphinxcontrib-serializinghtml
+    urllib3
+    attrs
+    cffi
+    cryptography
+    ephemeral-port-reserve
+    exceptiongroup
+    greenlet
+    iniconfig
+    pluggy
+    psutil
+    py
+    pycparser
+    pytest
+    pytest-timeout
+    pytest-xprocess
+    tomli
+    watchdog
+    mypy
+    mypy-extensions
+    types-contextvars
+    types-dataclasses
+    types-docutils
+    types-setuptools
+    typing-extensions
+    dessant/lock-threads
+    actions/cache
+    actions/checkout
+    actions/setup-python
+build
+    actions/checkout
+    actions/setup-python
+    codecov/codecov-action
+    re-actors/alls-green
+cachetools
+cfgv
+chardet
+colorama
+distlib
+filelock
+    actions/checkout
+    actions/download-artifact
+    actions/setup-python
+    actions/upload-artifact
+    pypa/gh-action-pypi-publish
+identify
+    covdefaults
+    coverage
+    pytest
+    asottile/workflows/.github/workflows/tox.yml
+nodeenv
+    coverage
+    flake8
+    mock
+    pytest
+    tox
+    setuptools
+    actions/checkout
+    actions/download-artifact
+    actions/setup-python
+    actions/upload-artifact
+pep517
+    flake8
+    pytest
+    setuptools
+    testpath
+    tomli
+    furo
+    sphinx
+    actions/checkout
+    actions/setup-python
+pip-compile-multi
+    build
+    click
+    packaging
+    pep517
+    pip-tools
+    tomli
+    toposort
+    wheel
+    alabaster
+    astroid
+    babel
+    bleach
+    bump2version
+    cachetools
+    certifi
+    cffi
+    cfgv
+    chardet
+    charset-normalizer
+    collective-checkdocs
+    colorama
+    commonmark
+    cryptography
+    dill
+    distlib
+    docutils
+    filelock
+    flake8
+    identify
+    idna
+    imagesize
+    importlib-metadata
+    importlib-resources
+    isort
+    jaraco-classes
+    jeepney
+    jinja2
+    keyring
+    lazy-object-proxy
+    markupsafe
+    mccabe
+    nodeenv
+    pep8-naming
+    pipdeptree
+    pkginfo
+    platformdirs
+    pre-commit
+    pycodestyle
+    pycparser
+    pydocstyle
+    pyflakes
+    pygments
+    pylint
+    pyproject-api
+    pytz
+    pyyaml
+    readme-renderer
+    requests
+    requests-toolbelt
+    rfc3986
+    rich
+    secretstorage
+    six
+    snowballstemmer
+    sphinx
+    sphinxcontrib-applehelp
+    sphinxcontrib-devhelp
+    sphinxcontrib-htmlhelp
+    sphinxcontrib-jsmath
+    sphinxcontrib-qthelp
+    sphinxcontrib-serializinghtml
+    tomlkit
+    tox
+    twine
+    typing-extensions
+    urllib3
+    virtualenv
+    webencodings
+    wrapt
+    zipp
+    attrs
+    coverage
+    exceptiongroup
+    iniconfig
+    mock
+    more-itertools
+    pluggy
+    pytest
+    pytest-cov
+    atomicwrites
+    actions/checkout
+    actions/setup-python
+    peter-evans/create-pull-request
+pip-tools
+platformdirs
+    actions/checkout
+    actions/download-artifact
+    actions/setup-python
+    actions/upload-artifact
+    pypa/gh-action-pypi-publish
+pre-commit
+    covdefaults
+    coverage
+    distlib
+    pytest
+    pytest-env
+    re-assert
+    asottile/workflows/.github/workflows/tox.yml
+    ansicolor
+    rust-hello-world
+    github.com/BurntSushi/toml
+pyproject-api
+pyyaml
+toml
+toposort
+tox
+    actions/checkout
+    actions/setup-python
+    pypa/gh-action-pypi-publish
+virtualenv
+    actions/checkout
+    actions/download-artifact
+    actions/setup-python
+    actions/upload-artifact
+    pypa/gh-action-pypi-publish
+    taiki-e/install-action
+wheel
+alabaster
+babel
+    pytz
+    sphinx
+    actions/checkout
+    actions/setup-python
+    actions/upload-artifact
+    actions/cache
+    codecov/codecov-action
+    pre-commit/action
+certifi
+charset-normalizer
+    build
+    mypy
+    wheel
+    black
+    chardet
+    codecov
+    flake8
+    flask
+    isort
+    pytest
+    pytest-cov
+    requests
+    furo
+    sphinx
+    actions/checkout
+    actions/setup-python
+    github/codeql-action/analyze
+    github/codeql-action/autobuild
+    github/codeql-action/init
+    actions/download-artifact
+    actions/upload-artifact
+    docker/setup-qemu-action
+    pypa/cibuildwheel
+    codecov/codecov-action
+docutils
+idna
+imagesize
+markupsafe
+packaging
+pallets-sphinx-themes
+    importlib-metadata
+    packaging
+    sphinx
+    backports-entry-points-selectable
+    cfgv
+    click
+    distlib
+    filelock
+    identify
+    nodeenv
+    pep517
+    pip-tools
+    platformdirs
+    pre-commit
+    pyyaml
+    six
+    toml
+    tomli
+    virtualenv
+    wheel
+pygments
+    pyflakes
+    pylint
+    pytest
+    pytest-cov
+    pytest-randomly
+    tox
+    wcag-contrast-ratio
+    actions/checkout
+    actions/setup-python
+    peaceiris/actions-gh-pages
+pytz
+requests
+    flask
+    httpbin
+    markupsafe
+    pytest
+    pytest-cov
+    pytest-httpbin
+    pytest-mock
+    trustme
+    wheel
+    certifi
+    charset-normalizer
+    idna
+    pysocks
+    pytest-xdist
+    urllib3
+    sphinx
+    actions/checkout
+    github/codeql-action/analyze
+    github/codeql-action/autobuild
+    github/codeql-action/init
+    actions/setup-python
+    pre-commit/action
+    dessant/lock-threads
+snowballstemmer
+sphinx
+    @socket.io/base64-arraybuffer
+    @types/component-emitter
+    @types/cookie
+    @types/cors
+    @types/node
+    accepts
+    ansi-regex
+    ansi-styles
+    anymatch
+    balanced-match
+    base64-arraybuffer
+    base64id
+    binary-extensions
+    body-parser
+    brace-expansion
+    braces
+    bytes
+    chokidar
+    cliui
+    color-convert
+    color-name
+    colors
+    component-emitter
+    concat-map
+    connect
+    content-type
+    cookie
+    cors
+    custom-event
+    date-format
+    debug
+    depd
+    di
+    dom-serialize
+    ee-first
+    emoji-regex
+    encodeurl
+    engine.io
+    engine.io-parser
+    ent
+    escalade
+    escape-html
+    eventemitter3
+    extend
+    fill-range
+    finalhandler
+    flatted
+    follow-redirects
+    fs-extra
+    fs.realpath
+    fsevents
+    get-caller-file
+    glob
+    glob-parent
+    graceful-fs
+    http-errors
+    http-proxy
+    iconv-lite
+    inflight
+    inherits
+    is-binary-path
+    is-docker
+    is-extglob
+    is-fullwidth-code-point
+    is-glob
+    is-number
+    is-wsl
+    isbinaryfile
+    isexe
+    jasmine-core
+    jsonfile
+    karma
+    karma-firefox-launcher
+    karma-jasmine
+    lodash
+    log4js
+    media-typer
+    mime
+    mime-db
+    mime-types
+    minimatch
+    minimist
+    mkdirp
+    ms
+    negotiator
+    normalize-path
+    object-assign
+    on-finished
+    once
+    parseurl
+    path-is-absolute
+    picomatch
+    qjobs
+    qs
+    range-parser
+    raw-body
+    readdirp
+    require-directory
+    requires-port
+    rfdc
+    rimraf
+    safer-buffer
+    setprototypeof
+    socket.io
+    socket.io-adapter
+    socket.io-parser
+    source-map
+    statuses
+    streamroller
+    string-width
+    strip-ansi
+    tmp
+    to-regex-range
+    toidentifier
+    type-is
+    ua-parser-js
+    universalify
+    unpipe
+    utils-merge
+    vary
+    void-elements
+    which
+    wrap-ansi
+    wrappy
+    ws
+    y18n
+    yargs
+    yargs-parser
+    actions/checkout
+    actions/setup-python
+    codecov/codecov-action
+    softprops/action-gh-release
+    dessant/lock-threads
+    deadsnakes/action
+    actions/setup-node
+    GabrielBB/xvfb-action
+    peter-evans/create-pull-request
+sphinx-issues
+    sphinx
+    actions/checkout
+    actions/setup-python
+    pre-commit/action
+sphinx-tabs
+    docutils
+    pygments
+    sphinx
+    actions/checkout
+    actions/setup-node
+    actions/setup-python
+    codecov/codecov-action
+    pypa/gh-action-pypi-publish
+sphinxcontrib-applehelp
+    actions/checkout
+    actions/setup-python
+sphinxcontrib-devhelp
+sphinxcontrib-htmlhelp
+sphinxcontrib-jsmath
+sphinxcontrib-log-cabinet
+sphinxcontrib-qthelp
+sphinxcontrib-serializinghtml
+urllib3
+    backports-zoneinfo
+    coverage
+    cryptography
+    pysocks
+    pytest
+    pytest-freezegun
+    pytest-memray
+    pytest-timeout
+    tornado
+    towncrier
+    trustme
+    idna
+    mypy
+    nox
+    types-backports
+    types-requests
+    furo
+    requests
+    sphinx
+    sphinx-copybutton
+    actions/checkout
+    actions/download-artifact
+    actions/setup-python
+    actions/upload-artifact
+    deadsnakes/action
+    github/codeql-action/analyze
+    github/codeql-action/autobuild
+    github/codeql-action/init
+    pre-commit/action
+    pypa/gh-action-pypi-publish
+    slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml
+    ossf/scorecard-action
+asgiref
+    actions/checkout
+    actions/setup-python
+attrs
+    actions/checkout
+    actions/setup-python
+    actions/upload-artifact
+    step-security/harden-runner
+    actions/download-artifact
+    hynek/build-and-inspect-python-package
+    re-actors/alls-green
+    github/codeql-action/analyze
+    github/codeql-action/init
+    pypa/gh-action-pypi-publish
+blinker
+iniconfig
+pluggy
+pytest
+    packaging
+    pallets-sphinx-themes
+    pluggy
+    pygments-pytest
+    sphinx
+    sphinx-removed-in
+    sphinxcontrib-svg2pdfconverter
+    sphinxcontrib-trio
+    actions/checkout
+    actions/setup-python
+    pypa/gh-action-pypi-publish
+    codecov/codecov-action
+    peter-evans/create-pull-request
+    anyio
+    django
+    pytest-asyncio
+    pytest-bdd
+    pytest-cov
+    pytest-django
+    pytest-flakes
+    pytest-html
+    pytest-mock
+    pytest-rerunfailures
+    pytest-sugar
+    pytest-trio
+    pytest-twisted
+    pytest-xvfb
+    twisted
+python-dotenv
+    mdx-truly-sane-lists
+    mkdocs
+    mkdocs-include-markdown-plugin
+    mkdocs-material
+    mkdocstrings
+    black
+    bumpversion
+    click
+    flake8
+    ipython
+    pytest
+    pytest-cov
+    sh
+    tox
+    twine
+    wheel
+    actions/checkout
+    actions/setup-python
+cffi
+cryptography
+    alabaster
+    attrs
+    babel
+    black
+    bleach
+    build
+    cachetools
+    certifi
+    chardet
+    charset-normalizer
+    check-manifest
+    click
+    colorama
+    commonmark
+    coverage
+    distlib
+    docutils
+    exceptiongroup
+    execnet
+    filelock
+    hypothesis
+    idna
+    imagesize
+    importlib-metadata
+    iniconfig
+    iso8601
+    jaraco-classes
+    jinja2
+    keyring
+    markupsafe
+    more-itertools
+    mypy
+    mypy-extensions
+    packaging
+    pathspec
+    pep517
+    pkginfo
+    platformdirs
+    pluggy
+    pretend
+    py-cpuinfo
+    pyenchant
+    pygments
+    pyproject-api
+    pytest
+    pytest-benchmark
+    pytest-cov
+    pytest-randomly
+    pytest-shard
+    pytest-subtests
+    pytest-xdist
+    pytz
+    readme-renderer
+    requests
+    requests-toolbelt
+    rfc3986
+    rich
+    ruff
+    six
+    snowballstemmer
+    sortedcontainers
+    sphinx
+    sphinx-rtd-theme
+    sphinxcontrib-applehelp
+    sphinxcontrib-devhelp
+    sphinxcontrib-htmlhelp
+    sphinxcontrib-jsmath
+    sphinxcontrib-qthelp
+    sphinxcontrib-serializinghtml
+    sphinxcontrib-spelling
+    tomli
+    tox
+    twine
+    types-pytz
+    types-requests
+    types-urllib3
+    typing-extensions
+    urllib3
+    virtualenv
+    webencodings
+    zipp
+    aliasable
+    android_system_properties
+    asn1
+    asn1_derive
+    autocfg
+    base64
+    bitflags
+    bumpalo
+    cc
+    cfg-if
+    chrono
+    codespan-reporting
+    core-foundation-sys
+    cryptography-rust
+    cxx
+    cxx-build
+    cxxbridge-flags
+    cxxbridge-macro
+    iana-time-zone
+    iana-time-zone-haiku
+    indoc
+    indoc-impl
+    Inflector
+    instant
+    js-sys
+    libc
+    link-cplusplus
+    lock_api
+    log
+    num-integer
+    num-traits
+    once_cell
+    ouroboros
+    ouroboros_macro
+    parking_lot
+    parking_lot_core
+    paste
+    paste-impl
+    pem
+    proc-macro-error
+    proc-macro-error-attr
+    proc-macro-hack
+    proc-macro2
+    pyo3
+    pyo3-build-config
+    pyo3-macros
+    pyo3-macros-backend
+    quote
+    redox_syscall
+    scopeguard
+    scratch
+    smallvec
+    syn
+    termcolor
+    unicode-ident
+    unicode-width
+    unindent
+    version_check
+    wasm-bindgen
+    wasm-bindgen-backend
+    wasm-bindgen-macro
+    wasm-bindgen-macro-support
+    wasm-bindgen-shared
+    winapi
+    winapi-i686-pc-windows-gnu
+    winapi-util
+    winapi-x86_64-pc-windows-gnu
+    actions/stale
+    actions/checkout
+    actions/setup-python
+    peter-evans/create-pull-request
+    tibdex/github-app-token
+    actions/cache
+    actions/download-artifact
+    actions/upload-artifact
+    dtolnay/rust-toolchain
+    re-actors/alls-green
+    dessant/lock-threads
+mypy
+    types-psutil
+    types-setuptools
+    types-typed-ast
+    mypy-extensions
+    tomli
+    typed-ast
+    typing-extensions
+    attrs
+    black
+    filelock
+    flake8
+    flake8-bugbear
+    flake8-noqa
+    isort
+    lxml
+    psutil
+    py
+    pytest
+    pytest-cov
+    pytest-forked
+    pytest-xdist
+    setuptools
+    six
+    furo
+    sphinx
+    actions/checkout
+    actions/setup-python
+    actions/upload-artifact
+    actions/github-script
+    kanga333/comment-hider
+mypy-extensions
+    typing
+pycparser
+types-contextvars
+types-dataclasses
+types-setuptools
+    pytype
+    aiohttp
+    black
+    flake8
+    flake8-bugbear
+    flake8-noqa
+    flake8-pyi
+    isort
+    mypy
+    packaging
+    pathspec
+    pycln
+    pyyaml
+    termcolor
+    tomli
+    tomlkit
+    types-pyyaml
+    types-setuptools
+    typing-extensions
+    actions/checkout
+    actions/github-script
+    actions/setup-python
+    actions/upload-artifact
+    kanga333/comment-hider
+    jakebailey/pyright-action
+    SebRollen/toml-action
+    dask
+    pandas
+    rich
+    tensorflow
+    sphinx
+    docutils
+    mock
+    protobuf
+typing-extensions
+flask
+    click
+    importlib-metadata
+    itsdangerous
+    jinja2
+    werkzeug
+    build
+    cachetools
+    cfgv
+    chardet
+    colorama
+    distlib
+    filelock
+    identify
+    nodeenv
+    pep517
+    pip-compile-multi
+    pip-tools
+    platformdirs
+    pre-commit
+    pyproject-api
+    pyyaml
+    toml
+    toposort
+    tox
+    virtualenv
+    wheel
+    alabaster
+    babel
+    certifi
+    charset-normalizer
+    docutils
+    idna
+    imagesize
+    markupsafe
+    packaging
+    pallets-sphinx-themes
+    pygments
+    pytz
+    requests
+    snowballstemmer
+    sphinx
+    sphinx-issues
+    sphinx-tabs
+    sphinxcontrib-applehelp
+    sphinxcontrib-devhelp
+    sphinxcontrib-htmlhelp
+    sphinxcontrib-jsmath
+    sphinxcontrib-log-cabinet
+    sphinxcontrib-qthelp
+    sphinxcontrib-serializinghtml
+    urllib3
+    asgiref
+    attrs
+    blinker
+    iniconfig
+    pluggy
+    pytest
+    python-dotenv
+    cffi
+    cryptography
+    mypy
+    mypy-extensions
+    pycparser
+    types-contextvars
+    types-dataclasses
+    types-setuptools
+    typing-extensions
+    flask
+    dessant/lock-threads
+    actions/cache
+    actions/checkout
+    actions/setup-python
+dessant/lock-threads
+actions/cache
+actions/checkout
+actions/setup-python
+```
