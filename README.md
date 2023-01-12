@@ -21,6 +21,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Run the Project
+
+```bash
+source venv/bin/activate
+python3 graphql.py
+```
+
 ## Sample Output
 
 ### `k=1`
